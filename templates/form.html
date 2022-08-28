@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+            <link rel="stylesheet" type=text/css href="static/main.css">
+            <style>
+                #form fieldset:not(:first-of-type) {
+                    display: none
+                }
+            </style>
+
+            <script>
+                $(document).ready(function(){
+                    var current_fs, next_fs, previous_fs; //fieldsets
+                    var opacity;
+                    var steps = $("fieldset").length;
+                    $(".next").click(function(){
+                        current_fs = $(this).parent();
+                        next_fs = $(this).parent().next();
+                        //show the next fieldset
+                        next_fs.show();
+                        //hide the current fieldset with style
+                        current_fs.animate({opacity: 0}, {
+                            step: function(now) {
+                                // for making fielset appear animation
+                                opacity = 1 - now;
+
+                                current_fs.css({
+                                    'display': 'none',
+                                    'position': 'relative'
+                                });
+                                next_fs.css({'opacity': opacity});
+                            },
+                            duration: 500
+                        });
+                    });
+                    $(".previous").click(function(){
+                        current_fs = $(this).parent();
+                        previous_fs = $(this).parent().prev();
+                        //show the previous fieldset
+                        previous_fs.show();
+                        //hide the current fieldset with style
+                        current_fs.animate({opacity: 0}, {
+                            step: function(now) {
+                                // for making fielset appear animation
+                                opacity = 1 - now;
+                                current_fs.css({
+                                    'display': 'none',
+                                    'position': 'relative'
+                                });
+                                previous_fs.css({'opacity': opacity});
+                            },
+                            duration: 500
+                        });
+                    });
+//                    $(".submit").click(function(){
+//                        window.location.href="ResultsPage.html";
+//                        return false;
+//                    })
+                });
+            </script>
+
+            <script>
+                function showfunction(box) {
+                    // Get the checkbox for the jewellery
+                    var CheckEarring = document.getElementById("E");
+                    var CheckNecklace = document.getElementById("N");
+                    var CheckBracelet = document.getElementById("B");
+                    var CheckAnklet = document.getElementById("A");
+                    var CheckRings = document.getElementById("R");
+                    var CheckToeRings = document.getElementById("T");
+                    // Get the output of the fieldset
+                    var Earring = document.getElementById("Earrings");
+                    var Necklace = document.getElementById("Necklaces");
+                    var Bracelet = document.getElementById("Bracelets");
+                    var Rings = document.getElementById("Ring");
+                    // If the checkbox is checked, display the fieldset for Earring
+
+                    if (CheckEarring.checked == true){
+                        Earring.style.display = "block";
+                    } else {
+                        Earring.style.display = "none";
+                    }
+                    // If the checkbox is checked, display the fieldset for Necklace
+                    if (CheckNecklace.checked == true){
+                        Necklace.style.display = "block";
+                    } else {
+                        Necklace.style.display = "none";
+                    }
+                    // If the checkbox is checked, display the fieldset for Bracelet
+                    if (CheckBracelet.checked == true){
+                        Bracelet.style.display = "block";
+                    } else {
+                        Bracelet.style.display = "none";
+                    }
+                    //  If the checkbox is checked, display the fieldset for Rings
+                    if (CheckRings.checked == true){
+                        Rings.style.display = "block";
+                    } else {
+                        Rings.style.display = "none";
+                    }
+
+                    if ((CheckAnklet == true) && (CheckToeRings == true)) {
+                        Earring.style.display = "none";
+                        Necklace.style.display = "none";
+                        Bracelet.style.display = "none";
+                        Rings.style.display = "none";
+                    }
+                }
+            </script>
+
+            <title>Jewellery Seeker </title>
+
+        </head>
+        <body>
+        
+            <div class="form-page" action="">
+
+                <form method="POST" action="http://localhost:5000/res">
+
+                    <fieldset>
+                        <div>
+                            <h2>Age?</h2>
+                            <p> Please select your birthday</p>
+                        </div>
+                        <div>
+                            <div class="form-group"><input type="date" id="birthday" name="birthday"></div>
+
+                        </div>
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div>
+                            <h2>Gender</h2>
+                        </div>
+                        <div>
+                            <label class="radio"><input type="radio" name="gender" value="Female" checked><span>Female</span></label>
+                            <label class="radio"><input type="radio" name="gender" value="Male"><span>Male</span></label>
+                            <label class="radio"><input type="radio" name="gender" value="Not"><span>Prefer Not to Say</span></label>
+                            <label class="radio"><input type="radio" name="gender" value="No"><span>No Preference</span></label>
+
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div>
+                            <h2>Jewellery</h2>
+                        </div>
+                        <div name=jewellery>
+                            <input class="radio"><input type="radio" name="jewellery" value="earring" id="E" onclick="showfunction()"><span>Earring</span></label>
+                            <input class="radio"><input type="radio" name="jewellery" value="necklace" id="N" onclick="showfunction()"><span>Necklace</span></label>
+                            <input class="radio"><input type="radio" name="jewellery" value="bracelet" id="B" onclick="showfunction()"><span>Bracelet</span></label>
+                            <input class="radio"><input type="radio" name="jewellery" value="anklet" id="A" checked onclick="showfunction()"><span>Anklet</span></label>
+                            <input class="radio"><input type="radio" name="jewellery" value="ring" id="R" onclick="showfunction()"><span>Rings</span></label>
+                            <input class="radio"><input type="radio" name="jewellery" value="ToeRings" id="T" onclick="showfunction()"><span>Toe Rings</span></label>
+                        </div>
+
+                        <div id="Earrings" style="display:none">
+                            <h4>Style</h4>
+                            <label class="radio"><input type="radio" name="EarringStyle" value="Studs" checked><span>Studs</span></label>
+                            <label class="radio"><input type="radio" name="EarringStyle" value="Hoops"><span>Hoops</span></label>
+                            <label class="radio"><input type="radio" name="EarringStyle" value="Bangley"><span>Bangley</span></label>
+                            <h4>Size</h4>
+                            <label class="radio"><input type="radio" name="EarringSize" value="Small" checked><span>Small</span></label>
+                            <label class="radio"><input type="radio" name="EarringSize" value="Medium"><span>Medium</span></label>
+                            <label class="radio"><input type="radio" name="EarringSize" value="Large"><span>Large</span></label>
+                        </div>
+
+                        <div id="Necklaces" style="display:none">
+                            <h4>Style</h4>
+                            <label class="radio"><input type="radio" name="NecklaceStyle" value="Choker" checked><span>Choker</span></label>
+                            <label class="radio"><input type="radio" name="NecklaceStyle" value="Pendent"><span>Pendent</span></label>
+                            <label class="radio"><input type="radio" name="NecklaceStyle" value="Statement"><span>Statement</span></label>
+                            <h4>Size</h4>
+                            <label class="radio"><input type="radio" name="NecklaceSize" value="Short" checked><span>Short</span></label>
+                            <label class="radio"><input type="radio" name="NecklaceSize" value="Medium"><span>Medium</span></label>
+                            <label class="radio"><input type="radio" name="NecklaceSize" value="Long"><span>Long</span></label>
+                        </div>
+
+                        <div id="Bracelets" style="display:none">
+                            <h4>Style</h4>
+                            <label class="radio"><input type="radio" name="BraceletStyle" value="Bangel" checked><span>Bangel</span></label>
+                            <label class="radio"><input type="radio" name="BraceletStyle" value="Chain"><span>Chain</span></label>
+                            <label class="radio"><input type="radio" name="BraceletStyle" value="Cuff"><span>Cuff</span></label>
+                            <label class="radio"><input type="radio" name="BraceletStyle" value="Charm"><span>Charm</span></label>
+                        </div>
+
+                        <div id="Ring" style="display:none">
+                            <h4>Style</h4>
+                            <label class="radio"><input type="radio" name="RingsStyle" value="Statement" checked><span>Statement</span></label>
+                            <label class="radio"><input type="radio" name="RingsStyle" value="Simple"><span>Simple</span></label>
+                            <label class="radio"><input type="radio" name="RingsStyle" value="Engagement"><span>Engagement</span></label>
+                            <label class="radio"><input type="radio" name="RingsStyle" value="Wedding"><span>Wedding</span></label>
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div>
+                            <h2>Metal</h2>
+                        </div>
+                        <div>
+                            <label class="radio"><input type="radio" value="Gold" name="Metal" checked><span>Gold</span></label>
+                            <label class="radio"><input type="radio" value="Platinum" name="Metal"><span>Platinum</span></label>
+                            <label class="radio"><input type="radio" value="Palladium" name="Metal"><span>Palladium</span></label>
+                            <label class="radio"><input type="radio" value="Titanium" name="Metal"><span>Titanium</span></label>
+                            <label class="radio"><input type="radio" value="Silver" name="Metal"><span>Silver</span></label>
+                            <label class="radio"><input type="radio" value="Tungsten" name="Metal"><span>Tungsten</span></label>
+                            <label class="radio"><input type="radio" value="StainlessSteel" name="Metal"><span>Stainless Steel</span></label>
+                            <label class="radio"><input type="radio" value="Material" name="Metal"><span>No Metal -> Material</span></label>
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div>
+                            <h2>Stones</h2>
+                        </div>
+                        <div>
+                            <label class="radio"><input type="radio" value="No stone" name="Stone" checked><span>No Stone</span></label>
+                            <label class="radio"><input type="radio" value="Amethyst" name="Stone"><span>Amethyst</span></label>
+                            <label class="radio"><input type="radio" value="Emerald" name="Stone"><span>Emerald</span></label>
+                            <label class="radio"><input type="radio" value="Ruby" name="Stone"><span>Ruby</span></label>
+                            <label class="radio"><input type="radio" value="Sapphire" name="Stone"><span>Sapphire</span></label>
+                            <label class="radio"><input type="radio" value="Diamond" name="Stone"><span>Diamond</span></label>
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div>
+                            <h2>Colour</h2>
+                        </div>
+                        <div>
+                            <label class="radio"><input type="radio" value="No colour" name="Colour" checked><span>No Added Colour</span></label>
+                            <label class="radio"><input type="radio" value="Blue" name="Colour"><span>Blue</span></label>
+                            <label class="radio"><input type="radio" value="Yellow" name="Colour"><span>Yellow</span></label>
+                            <label class="radio"><input type="radio" value="Green" name="Colour"><span>Green</span></label>
+                            <label class="radio"><input type="radio" value="Red" name="Colour"><span>Red</span></label>
+                            <label class="radio"><input type="radio" value="Pink" name="Colour"><span>Pink</span></label>
+                            <label class="radio"><input type="radio" value="White" name="Colour"><span>White</span></label>
+                            <label class="radio"><input type="radio" value="Black" name="Colour"><span>Black</span></label>
+                            <label class="radio"><input type="radio" value="Purple" name="Colour"><span>Purple</span></label>
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div>
+                            <h2>What is the jewellery for?</h2>
+                        </div>
+                        <div>
+                            <div class="form-group"><textarea class="form-control message" name="message" rows="14"></textarea></div>
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset>
+                        <div>
+                            <h2>Price</h2>
+                        </div>
+                        <div>
+                            <label class="radio"><input type="radio" name="price" value="low" checked><span>Low End</span></label>
+                            <label class="radio"><input type="radio" name="price" value="mid"><span>Middle End</span></label>
+                            <label class="radio"><input type="radio" name="price" value="high"><span>High End</span></label>
+                        </div>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="submit" name="submit" class="submit" value="Submit"/>
+                    </fieldset>
+                </form>
+            </div>
+        </body>
+    </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Results!</title>
+<link rel="stylesheet" href="static/main.css">
+</head>
+
+<body>
+
+<a href="http://localhost:5000"></a>
+
+<div class="form-page">
+    <form action="http://localhost:5000">
+        <input type="submit" name="startbutton" class="start-button" value="HOME" >
+        <br>
+    </form>
+
+<h1> Results!</h1>
+
+<p1>
+<b>Here are the results from your input. We hope you like them!</b><br>
+<br>
+<ul>
+
+  {% for i in results %}
+
+  <p1> <b>The name of your  is:</b> {{ i[0] }}<br>
+    <b>The metal type is:</b> {{ i[3] }}<br>
+      <b>The link is:</b> {{ link }}{{ i[1] }}<br>
+        <b>The price is:</b> {{ i[2] }}  </p1>
+        <br><br><br>
+
+    {% endfor %}
+    <br>
+    <br>
+</ul>
+</p1>
+
+</div>
+</body>
+</html>

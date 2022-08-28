@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+  <meta charset="utf-8">
+
+  <title>Jewellery Seeker</title>
+<head>
+    <link rel="stylesheet" href="static/main.css">
+
+</head>
+
+<body>
+
+    <a href="{{ url_for('jewellery') }}">
+    </a>
+              
+
+    <div class="first-page">
+    <h1>Welcome to Jewellery Seeker!</h1>
+    <p1>  Welcome to your personal Jewellery Seeker. Using this application is a simple and 
+        easy method of finding jewellery without the hassle of searching through multiple sites! <br><br>
+        
+        
+        Click the button below to fill out your jewellery preferences and find your perfect pieces!</p1><br><br>
+    <form action="{{ url_for('form') }}"> 
+        <input type="submit" name="startbutton" class="start-button" value="Click to Start Questionnaire!" >
+        <br>
+    </form>
+    </div>
+
+</body>
+</html>
+
