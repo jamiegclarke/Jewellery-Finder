@@ -8,7 +8,10 @@ This application can be run locally using Flask.
 
 Run the following commmands:
 
+
+```
 pip install Flask
 python4 flaskscraper.py
+```
 
 Find the application at 0.0.0.0
