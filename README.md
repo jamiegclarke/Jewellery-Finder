@@ -11,7 +11,7 @@ Run the following commmands:
 
 ```
 pip install Flask
-python4 flaskscraper.py
+python3 flaskscraper.py
 ```
 
 Find the application at 0.0.0.0
